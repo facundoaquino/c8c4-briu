@@ -1,9 +1,14 @@
 import { Routes } from '@angular/router';
-import { EditorLandingComponent } from './editor/editor-landing/editor-landing.component';
+import { LandingComponent } from './landing/landing.component';
+import { OrderComponent } from './order/new/order/order.component';
 
 export const routes: Routes = [
   {
-    path: 'editor',
-    component: EditorLandingComponent
+    path: '',
+    component: LandingComponent
+  },
+  {
+    path: 'new-order',
+    component: OrderComponent
   }
 ];
