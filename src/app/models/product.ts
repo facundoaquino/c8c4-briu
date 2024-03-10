@@ -28,13 +28,17 @@ export function makeProduct(product: Partial<IProduct>): IProduct {
 
 
 export interface IProductsState {
-  products: IProduct[];
+  data: IProduct[];
+  isLoading: boolean;
+  hasErrors: boolean;
 }
 
 export function makeProductsState(productState: Partial<IProductsState>):IProductsState {
 
   const defaultState: IProductsState = {
-    products: [makeProduct({})]
+    data: [makeProduct({})],
+    isLoading: false,
+    hasErrors: false,
   }
 
   return { ...defaultState, ...productState }

@@ -7,6 +7,7 @@ import { NgxsModule } from '@ngxs/store';
 import { environment } from '../environments/environment.development';
 import { ProductsState } from './store/products/products.state';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes),
@@ -15,6 +16,7 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(
       NgxsModule.forRoot([ProductsState], {
         developmentMode: !environment.production,
-      })
+      }),
+       NgxsReduxDevtoolsPluginModule.forRoot()
     ),]
 };
