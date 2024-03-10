@@ -1,3 +1,4 @@
+import { IApiResponseArray } from '.';
 
 export interface IProduct {
   id: number;
@@ -39,3 +40,6 @@ export function makeProductsState(productState: Partial<IProductsState>):IProduc
   return { ...defaultState, ...productState }
 
 }
+
+
+export interface IProductsResponse extends IApiResponseArray<IProduct> {}
