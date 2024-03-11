@@ -1,0 +1,19 @@
+<mat-card class="product-card">
+  <mat-card-header>
+    <mat-card-title>Gorra con tu logo</mat-card-title>
+    <mat-card-title>{{ 2500 | currency }}</mat-card-title>
+    <!-- <mat-card-subtitle>{{ 2500 | currency }}</mat-card-subtitle> -->
+  </mat-card-header>
+  <mat-card-content>
+    <img src="../../../assets/cap.jpg" class="product-image">
+    <!-- <p>{{ 'product.description' }}</p> -->
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button class="mat-raised-button">Agregar al carrito</button>
+    <div class="quantity-selector">
+      <button mat-icon-button class="mat-icon-button" (click)="decreaseQuantity()">-</button>
+      <input [readOnly]="true" type="number" class="quantity-input" [formControl]="quantityControl">
+      <button mat-icon-button class="mat-icon-button" (click)="increaseQuantity()">+</button>
+    </div>
+  </mat-card-actions>
+</mat-card>
