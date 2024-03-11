@@ -21,9 +21,9 @@ export function makeProduct(product: Partial<IProduct>): IProduct {
   category: '',
   brand: '',
   stock: 0,
- }
+ };
 
- return { ...defaultProduct, ...product }
+ return { ...defaultProduct, ...product };
 }
 
 
@@ -39,9 +39,9 @@ export function makeProductsState(productState: Partial<IProductsState>):IProduc
     data: [makeProduct({})],
     isLoading: false,
     hasErrors: false,
-  }
+  };
 
-  return { ...defaultState, ...productState }
+  return { ...defaultState, ...productState };
 
 }
 

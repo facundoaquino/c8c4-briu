@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { Select, Store } from '@ngxs/store';
-import { GetProducts } from '../store/products/products.actions';
 import { ProductsState } from '../store/products/products.state';
 import { Observable, Subscription } from 'rxjs';
 import { IProductsState, makeProductsState } from '../models/product';
@@ -22,17 +21,17 @@ export class ProductsComponent implements OnInit {
 
   public productsState: IProductsState = makeProductsState({});
 
-  constructor(private readonly store: Store){}
+  constructor(private readonly store: Store) {}
 
   ngOnInit(): void {
     this.subscription.add(
-      this.productsState$.subscribe( state => {
+      this.productsState$.subscribe(state => {
         this.productsState = state;
       })
-    )
+    );
   }
 
-  get isProductsLoading(): boolean{
+  get isProductsLoading(): boolean {
    return this.productsState.isLoading;
   }
 }

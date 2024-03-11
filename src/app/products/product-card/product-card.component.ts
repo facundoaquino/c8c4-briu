@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MaterialModule } from '../../material/material.module';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -11,17 +11,14 @@ import { CommonModule } from '@angular/common';
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss'
 })
-export class ProductCardComponent implements OnInit{
+export class ProductCardComponent {
   @Input() product: any;
     quantityControl = new FormControl(1);
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
-
   addToCart() {
-    console.log('Agregar al carrito', this.quantityControl);
+    // console.log('Agregar al carrito', this.quantityControl);
   }
 
   increaseQuantity() {

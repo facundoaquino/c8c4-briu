@@ -7,5 +7,5 @@ export class GetProducts {
 
 export class GetProductsSuccess {
   static readonly type = '[Products] Get products success';
-  constructor(public readonly payload: { products: IProduct[]}) { }
+  constructor(public readonly payload: { products: IProduct[ ]}) { }
 }

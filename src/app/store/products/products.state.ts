@@ -16,31 +16,32 @@ export class ProductsState {
   constructor(private readonly productsService: ProductsService) {}
 
   @Action(GetProducts)
-  getProducts(stateContext: StateContext<IProductsState>){
+  getProducts(stateContext: StateContext<IProductsState>) {
 
     const state = stateContext.getState();
     stateContext.setState({
       ...state,
       data: [makeProduct({})],
       isLoading: true,
-      hasErrors:false
-    })
+      hasErrors: false
+    });
     return this.productsService.getProducts()
     .pipe(
       map((res)=>res.data),
-      mergeMap(products => stateContext.dispatch(new GetProductsSuccess({products})))
-    )
+      mergeMap(products => stateContext.dispatch(new GetProductsSuccess({ products })))
+    );
   }
 
+
   @Action(GetProductsSuccess)
-  getProductsSuccess(stateContext: StateContext<IProductsState>, action: GetProductsSuccess){
+  getProductsSuccess(stateContext: StateContext<IProductsState>, action: GetProductsSuccess) {
 
     const state = stateContext.getState();
     stateContext.setState({
       ...state,
       data: action.payload.products,
       isLoading: false,
-      hasErrors:false
-    })
+      hasErrors: false
+    });
   }
 }
