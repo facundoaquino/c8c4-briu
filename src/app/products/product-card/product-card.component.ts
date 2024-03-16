@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MaterialModule } from '../../material/material.module';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { IProduct, makeProduct } from '../../models/product';
 
 @Component({
   selector: 'app-product-card',
@@ -11,11 +12,18 @@ import { CommonModule } from '@angular/common';
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss'
 })
-export class ProductCardComponent {
-  @Input() product: any;
+export class ProductCardComponent implements OnInit {
+  @Input() product: IProduct = makeProduct({});
+
     quantityControl = new FormControl(1);
 
   constructor() { }
+
+
+  ngOnInit(): void {
+    console.log(this.product);
+
+  }
 
   addToCart() {
     // console.log('Agregar al carrito', this.quantityControl);

@@ -5,7 +5,11 @@
     </div>
   } @else {
     <div class="products__container">
-      <app-product-card></app-product-card>
+      @for (product of products; track $index) {
+        <app-product-card
+        [product]="product"
+        ></app-product-card>
+      }
     </div>
   }
 </div>
