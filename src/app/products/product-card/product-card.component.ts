@@ -21,12 +21,10 @@ export class ProductCardComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(this.product);
-
+    this.quantityControl.setValue(this.product.minPurchase);
   }
 
   addToCart() {
-    // console.log('Agregar al carrito', this.quantityControl);
   }
 
   increaseQuantity() {
@@ -34,7 +32,7 @@ export class ProductCardComponent implements OnInit {
   }
 
   decreaseQuantity() {
-    if (this.quantityControl.value! > 0) {
+    if (this.quantityControl.value! > this.product.minPurchase) {
       this.quantityControl.setValue(this.quantityControl.value! - 1);
     }
   }

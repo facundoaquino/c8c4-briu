@@ -5,6 +5,7 @@ export interface IProduct {
   name: string;
   description: string;
   price: number;
+  minPurchase: number;
   image: string;
   category: string;
   brand: string;
@@ -16,6 +17,7 @@ export function makeProduct(product: Partial<IProduct>): IProduct {
   id: 0,
   name: '',
   description: '',
+  minPurchase: 0,
   price: 0,
   image: '',
   category: '',
