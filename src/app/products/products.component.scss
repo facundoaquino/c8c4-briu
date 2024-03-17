@@ -1,17 +1,24 @@
 .products{
   background-color: black;
   color: white;
+  display: flex;
+  padding: 48px;
+  justify-content: center;
 
   &__container {
      display: flex;
      padding: 20px;
-     gap: 16px;
+     gap: 48px  ;
      flex-wrap: wrap;
   }
 
   @media screen and (max-width: 768px) {
+    padding: 16px;
+    display: block;
     &__container {
+      padding: 0;
       flex-direction: column;
+      gap: 8px;
    }
   }
 }

@@ -8,9 +8,9 @@
     <img src="../../../assets/cap.jpg" class="product-image" alt="no image avaible">
     <!-- <p>{{ 'product.description' }}</p> -->
   </mat-card-content>
-  <mat-card-actions>
+  <mat-card-actions class="product-card__actions">
     <button mat-raised-button class="mat-raised-button">Agregar al carrito</button>
-    <div class="quantity-selector">
+    <div class="product-card__quantity-selector">
       <button mat-icon-button class="mat-icon-button" (click)="decreaseQuantity()">-</button>
       <input [readOnly]="true" type="number" class="quantity-input" [formControl]="quantityControl">
       <button mat-icon-button class="mat-icon-button" (click)="increaseQuantity()">+</button>
