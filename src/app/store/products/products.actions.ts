@@ -1,4 +1,4 @@
-import { IProduct } from '../../models/product';
+import { IProduct, IOrder } from '../../models/product';
 
 export class GetProducts {
   static readonly type = '[Products] Get products';
@@ -7,5 +7,10 @@ export class GetProducts {
 
 export class GetProductsSuccess {
   static readonly type = '[Products] Get products success';
-  constructor(public readonly payload: { products: IProduct[ ]}) { }
+  constructor(public readonly payload: { products: IProduct[]}) { }
+}
+
+export class SaveOrderForm {
+  static readonly type = '[Products] Save Order Form';
+  constructor(public readonly payload: { order: IOrder}) { }
 }

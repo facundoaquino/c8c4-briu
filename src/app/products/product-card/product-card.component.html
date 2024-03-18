@@ -9,7 +9,7 @@
     <!-- <p>{{ 'product.description' }}</p> -->
   </mat-card-content>
   <mat-card-actions class="product-card__actions">
-    <button mat-raised-button class="mat-raised-button">Agregar al carrito</button>
+    <button mat-raised-button class="mat-raised-button" (click)="addToCart()">Agregar al carrito</button>
     <div class="product-card__quantity-selector">
       <button mat-icon-button class="mat-icon-button" (click)="decreaseQuantity()">-</button>
       <input [readOnly]="true" type="number" class="quantity-input" [formControl]="quantityControl">

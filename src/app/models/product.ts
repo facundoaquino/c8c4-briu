@@ -33,6 +33,7 @@ export interface IProductsState {
   data: IProduct[];
   isLoading: boolean;
   hasErrors: boolean;
+  order: IOrder[];
 }
 
 export function makeProductsState(productState: Partial<IProductsState>):IProductsState {
@@ -41,9 +42,32 @@ export function makeProductsState(productState: Partial<IProductsState>):IProduc
     data: [makeProduct({})],
     isLoading: false,
     hasErrors: false,
+    order: [],
   };
 
   return { ...defaultState, ...productState };
+
+}
+
+export interface IOrder {
+  productId: number;
+  productName: string;
+  quantity: number;
+  unitPrice: number;
+  totalPrice: number;
+}
+
+export function makeOrder(orderState: Partial<IOrder>):IOrder {
+
+  const defaultState: IOrder = {
+    productId: 0,
+    productName: '',
+    quantity: 0,
+    unitPrice: 0,
+    totalPrice: 0,
+  };
+
+  return { ...defaultState, ...orderState };
 
 }
 

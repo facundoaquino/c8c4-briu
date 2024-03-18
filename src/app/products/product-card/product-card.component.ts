@@ -2,7 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MaterialModule } from '../../material/material.module';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { IProduct, makeProduct } from '../../models/product';
+import { IProduct, makeProduct, IOrder } from '../../models/product';
+import { SaveOrderForm } from '../../store/products/products.actions';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'app-product-card',
@@ -17,7 +19,9 @@ export class ProductCardComponent implements OnInit {
 
     quantityControl = new FormControl(1);
 
-  constructor() { }
+  constructor(
+    private readonly store: Store
+  ) { }
 
 
   ngOnInit(): void {
@@ -25,6 +29,7 @@ export class ProductCardComponent implements OnInit {
   }
 
   addToCart() {
+    this.store.dispatch(new SaveOrderForm({ order: this.buildOrder() }));
   }
 
   increaseQuantity() {
@@ -36,4 +41,16 @@ export class ProductCardComponent implements OnInit {
       this.quantityControl.setValue(this.quantityControl.value! - 1);
     }
   }
+
+  private buildOrder(): IOrder {
+    return {
+      productId: this.product.id,
+      productName: this.product.name,
+      quantity: this.quantityControl.value!,
+      unitPrice: this.product.price,
+      totalPrice: this.product.price * this.quantityControl.value!,
+    };
+  }
+
 }
+
