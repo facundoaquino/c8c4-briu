@@ -1,10 +1,12 @@
-.container {
+.landing {
+
+&__container{
   height: 100vh;
   width: 100vw;
   position: relative;
 }
 
-.background {
+&__background {
   position: absolute;
   top: 0;
   left: 0;
@@ -13,7 +15,7 @@
   object-fit: cover;
 }
 
-.button {
+&__button {
   position: absolute;
   top: 10%;
   left: 50%;
@@ -21,3 +23,15 @@
   font-size: 18px;
   cursor: pointer;
 }
+
+&__cart-icon{
+  position: absolute;
+  color: white;
+  z-index: 2;
+  top: 16px;
+  right: 24px;
+  font-size: 44px;
+  cursor: pointer;
+}
+}
+
