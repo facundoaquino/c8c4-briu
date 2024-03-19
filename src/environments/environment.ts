@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseApiUrl: 'https://briubackoffice.facuaquino.com.ar/',
+  baseApiUrl: 'http://briubackoffice.facuaquino.com.ar/',
 };
