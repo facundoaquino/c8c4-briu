@@ -6,3 +6,17 @@ input::-webkit-inner-spin-button {
 }
 html, body { height: 100%; scroll-behavior: smooth; overflow-x: hidden;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;   }
+.mat-mdc-snack-bar-container {
+  padding: 20px;
+  &.custom-snackbar {
+    --mdc-snackbar-container-color: black !important;
+    --mat-mdc-snack-bar-button-color: #fff !important;
+    --mdc-snackbar-supporting-text-color: #fff !important;
+  }
+}
+
+
+.mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled){
+  color: white !important;
+  border: 0.1px solid white;
+}

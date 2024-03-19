@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { IProduct, makeProduct, IOrder } from '../../models/product';
 import { SaveOrderForm } from '../../store/products/products.actions';
 import { Store } from '@ngxs/store';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-product-card',
@@ -20,7 +21,8 @@ export class ProductCardComponent implements OnInit {
     quantityControl = new FormControl(1);
 
   constructor(
-    private readonly store: Store
+    private readonly store: Store,
+    private _snackBar: MatSnackBar
   ) { }
 
 
@@ -30,6 +32,15 @@ export class ProductCardComponent implements OnInit {
 
   addToCart() {
     this.store.dispatch(new SaveOrderForm({ order: this.buildOrder() }));
+    this.openSnackBar('Producto agregado', 'Terminar');
+  }
+
+  openSnackBar(message: string, action: string) {
+    const snackBarRef = this._snackBar.open(message, action, { duration: 60000, panelClass: ['custom-snackbar'] });
+    snackBarRef.onAction().subscribe(()=>{
+      console.log('clicked');
+
+    });
   }
 
   increaseQuantity() {
