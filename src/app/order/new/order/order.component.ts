@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { IOrder, IProductsState, makeOrder } from '../../../models/product';
+import { IOrder, IProductsState } from '../../../models/product';
 import { ProductsState } from '../../../store/products/products.state';
 import { IStore } from '../../../models';
 import { MaterialModule } from '../../../material/material.module';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order',
@@ -20,7 +21,10 @@ export class OrderComponent implements OnInit {
   public orders: IOrder[] = [];
 
 
-  constructor(private readonly store: Store) {}
+  constructor(
+    private readonly store: Store,
+    private readonly router: Router
+    ) {}
 
   ngOnInit(): void {
     this.store.selectSnapshot((state: IStore) => {
@@ -40,4 +44,8 @@ export class OrderComponent implements OnInit {
     return `../../../assets/${ product.imageName}`;
   }
 
+
+  nextStep() {
+    this.router.navigateByUrl('order-form');
+  }
 }
