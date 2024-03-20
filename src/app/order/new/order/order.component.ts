@@ -34,4 +34,10 @@ export class OrderComponent implements OnInit {
       return ord1 + ord2.totalPrice;}, 0);
   }
 
+  imageUrl(order: IOrder): string {
+    const products = this.store.selectSnapshot((state:IStore) => state.products.data);
+    const product = products.find(prod => prod.id === order.productId)!;
+    return `../../../assets/${ product.imageName}`;
+  }
+
 }

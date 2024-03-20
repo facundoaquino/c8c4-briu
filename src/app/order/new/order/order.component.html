@@ -9,7 +9,7 @@
           <mat-card-subtitle>Total {{order.totalPrice | currency}}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-          <img src="../../../assets/cap.jpg" class="order__product-image" alt="no image avaible">
+          <img [src]=imageUrl(order) class="order__product-image" alt="no image avaible">
         </mat-card-content>
       </mat-card>
     }

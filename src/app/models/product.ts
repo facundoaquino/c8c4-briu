@@ -2,6 +2,7 @@ import { IApiResponseArray } from '.';
 
 export interface IProduct {
   id: number;
+  imageName: string;
   name: string;
   description: string;
   price: number;
@@ -16,6 +17,7 @@ export function makeProduct(product: Partial<IProduct>): IProduct {
  const defaultProduct: IProduct = {
   id: 0,
   name: '',
+  imageName: '',
   description: '',
   minPurchase: 0,
   price: 0,

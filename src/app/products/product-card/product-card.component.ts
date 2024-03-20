@@ -65,5 +65,9 @@ export class ProductCardComponent implements OnInit {
     };
   }
 
+  get imageUrl(): string {
+    return `../../../assets/${ this.product.imageName}`;
+  }
+
 }
 
