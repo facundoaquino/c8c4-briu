@@ -6,6 +6,7 @@ import { IProduct, makeProduct, IOrder } from '../../models/product';
 import { SaveOrderForm } from '../../store/products/products.actions';
 import { Store } from '@ngxs/store';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-card',
@@ -22,7 +23,8 @@ export class ProductCardComponent implements OnInit {
 
   constructor(
     private readonly store: Store,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private readonly router: Router
   ) { }
 
 
@@ -36,9 +38,9 @@ export class ProductCardComponent implements OnInit {
   }
 
   openSnackBar(message: string, action: string) {
-    const snackBarRef = this._snackBar.open(message, action, { duration: 60000, panelClass: ['custom-snackbar'] });
+    const snackBarRef = this._snackBar.open(message, action, { duration: 3000, panelClass: ['custom-snackbar'] });
     snackBarRef.onAction().subscribe(()=>{
-      console.log('clicked');
+      this.router.navigateByUrl('/new-order');
 
     });
   }

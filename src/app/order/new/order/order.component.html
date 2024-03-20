@@ -1,1 +1,22 @@
-<p>order works!</p>
+<div class="order">
+  <div class="order__container">
+    @for (order of orders; track $index) {
+      <mat-card class="order__product-card">
+        <mat-card-header>
+          <mat-card-title>{{order.productName}}</mat-card-title>
+          <mat-card-title>{{ order.unitPrice| currency }}</mat-card-title>
+          <mat-card-subtitle>Unidades {{order.quantity}}</mat-card-subtitle>
+          <mat-card-subtitle>Total {{order.totalPrice | currency}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <img src="../../../assets/cap.jpg" class="order__product-image" alt="no image avaible">
+        </mat-card-content>
+      </mat-card>
+    }
+
+    <footer class="order__footer">
+      <p>Total: {{totalPrice | currency}}</p>
+      <button mat-button color="primary">Siguiente</button>
+    </footer>
+  </div>
+</div>
