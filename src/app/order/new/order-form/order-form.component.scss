@@ -1,0 +1,108 @@
+.order-form {
+  background-color: #000000;
+  min-height: 100vh;
+  padding: 48px;
+
+
+&__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+
+&__footer {
+  display: flex;
+  box-shadow: inset 0px 1px 0px 0px #adabab;
+  background-color: #060607;
+  flex-direction: row;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  align-items: baseline;
+  padding: 8px;
+}
+
+
+}
+.mat-form-field {
+  background-color: #fff;
+  color: #000;
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+  color: #4caf50;
+}
+
+.mat-form-field-underline {
+  background-color: #fff;
+}
+
+.mat-form-field-underline.mat-focused {
+  background-color: #4caf50;
+}
+
+.mat-select {
+  background-color: #fff;
+  color: #000;
+}
+
+.mat-select-trigger {
+  color: #000;
+}
+
+.mat-select-arrow {
+  color: #000;
+}
+
+.mat-select-panel {
+  background-color: #000;
+  color: #fff;
+}
+
+.mat-option {
+  color: #fff;
+}
+
+.mat-option:hover {
+  background-color: #444;
+}
+
+.mat-input-element {
+  color: #000;
+}
+
+.mat-input-element::placeholder {
+  color: #ccc;
+}
+
+.mat-form-field.mat-focused .mat-input-element {
+  color: #4caf50;
+}
+
+.mat-form-field.mat-focused .mat-input-element::placeholder {
+  color: #4caf50;
+}
+
+.mat-raised-button {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.mat-raised-button:hover {
+  background-color: #448aff;
+}
+
+.file-input {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+}
+
+.file-input:hover {
+  background-color: #f5f5f5;
+}
+
+

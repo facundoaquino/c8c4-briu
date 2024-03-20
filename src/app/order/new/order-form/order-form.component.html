@@ -1,1 +1,45 @@
-<p>order-form works!</p>
+<div class="order-form">
+  <div class="order-form__container">
+    <form [formGroup]="form" class="order-form__form">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input matInput  formControlName="name">
+      </mat-form-field>
+       <mat-form-field appearance="outline">
+        <mat-label>Apellido</mat-label>
+        <input matInput   formControlName="lastname">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Celular</mat-label>
+        <input matInput type="number"  formControlName="phone">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Provincia</mat-label>
+        <input matInput formControlName="province">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Localidad</mat-label>
+        <input matInput formControlName="location">
+      </mat-form-field>
+      <!-- <mat-form-field appearance="outline">
+        <mat-label>Provincia</mat-label>
+        <mat-select formControlName="province">
+          <option *ngFor="let provincia of provincias" [value]="provincia.id">{{provincia.nombre}}</option>
+        </mat-select>
+      </mat-form-field> -->
+     <!--
+      <mat-form-field appearance="outline">
+        <mat-label>Localidad</mat-label>
+        <mat-select formControlName="location">
+          <option *ngFor="let localidad of localidades" [value]="localidad.id">{{localidad.nombre}}</option>
+        </mat-select>
+      </mat-form-field>
+
+       -->
+    </form>
+    <footer class="order-form__footer">
+      <button mat-button color="primary" (click)="onBack()">Volver</button>
+      <button mat-button color="primary" (click)="sendMessage()">Terminar</button>
+    </footer>
+  </div>
+</div>
