@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { MaterialModule } from '../../../material/material.module';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { IStore } from '../../../models';
 import { IOrder } from '../../../models/product';
+import { OrderComponent } from '../order/order.component';
 
 @Component({
   selector: 'app-order-form',
   standalone: true,
-  imports: [MaterialModule, ReactiveFormsModule],
+  imports: [MaterialModule, ReactiveFormsModule, OrderComponent],
   templateUrl: './order-form.component.html',
   styleUrl: './order-form.component.scss'
 })
@@ -19,15 +20,19 @@ export class OrderFormComponent implements OnInit {
 
   constructor(
     private readonly router: Router,
-    private readonly store: Store
+    private readonly store: Store,
+    private readonly fb: FormBuilder
   ) {
-    this.form = new FormGroup({
-      name: new FormControl(''),
-      lastname: new FormControl(''),
-      province: new FormControl(''),
-      location: new FormControl(''),
-      logo: new FormControl(''),
-      phone: new FormControl(''),
+    this.form = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      lastname: ['', [Validators.required, Validators.minLength(3)]],
+      phone: ['', [Validators.required, Validators.min(100000), Validators.max(9999999999), Validators.pattern('^[0-9]*$'),]],
+      province: ['', [Validators.required, Validators.minLength(4)]],
+      location: ['', [Validators.required, Validators.minLength(4)]],
+      street: ['', [Validators.required, Validators.minLength(2)]],
+      number: ['', [Validators.required, Validators.minLength(1)]],
+      floor: ['', Validators.maxLength(3)],
+      department: ['', Validators.maxLength(3)]
     });
   }
 
@@ -36,6 +41,7 @@ export class OrderFormComponent implements OnInit {
       this.orders = state.products.order;
     }
     );
+
   }
 
   onFileChange(_event: Event) {
