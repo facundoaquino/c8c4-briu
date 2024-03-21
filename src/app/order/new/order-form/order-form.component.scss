@@ -1,8 +1,8 @@
 .order-form {
   background-color: #000000;
   min-height: 100vh;
-  padding: 48px;
-
+  padding-top: 48px;
+  box-sizing: border-box;
 &__title{
   color: white;
 }
@@ -45,6 +45,25 @@
   padding: 8px;
 }
 
+@media screen and (max-width: 1440px  ) {
+  &__side {
+    display: none;
+  }
+  &__form-mins{
+    justify-content: flex-start;
+  }
+}
+
+@media screen and (max-width: 1440px  ) {
+  padding: 0;
+  &__side {
+    display: none;
+  }
+  &__container {
+    display: block;
+    padding: 16px;
+  }
+}
 
 }
 .mat-form-field {
