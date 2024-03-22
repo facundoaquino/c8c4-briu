@@ -74,6 +74,7 @@ export class OrderFormComponent implements OnInit {
       text = `${text } space`;
       if (!((index+1) === orders.length)) {
         text = `${text } ----------------- `;
+        text = `${text } space`;
       }
     });
     if (orders.length > 1) {
