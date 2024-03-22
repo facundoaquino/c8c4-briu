@@ -16,7 +16,9 @@
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Provincia</mat-label>
-        <input matInput formControlName="province">
+        <mat-select formControlName="province">
+          <mat-option *ngFor="let province of provinces" [value]="province.nombre">{{province.nombre}}</mat-option>
+        </mat-select>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Localidad</mat-label>
@@ -46,21 +48,6 @@
       <button mat-button color="secondary" (click)="onBack()">Volver</button>
       <button [disabled]="!form.valid" mat-raised-button color="primary" (click)="sendMessage()">Terminar pedido</button>
     </div>
-      <!-- <mat-form-field appearance="outline">
-        <mat-label>Provincia</mat-label>
-        <mat-select formControlName="province">
-          <option *ngFor="let provincia of provincias" [value]="provincia.id">{{provincia.nombre}}</option>
-        </mat-select>
-      </mat-form-field> -->
-     <!--
-      <mat-form-field appearance="outline">
-        <mat-label>Localidad</mat-label>
-        <mat-select formControlName="location">
-          <option *ngFor="let localidad of localidades" [value]="localidad.id">{{localidad.nombre}}</option>
-        </mat-select>
-      </mat-form-field>
-
-       -->
     </form>
     <div class="order-form__side">
       <img src="../../../../assets/logo.jpg" alt="">

@@ -6,33 +6,41 @@ import { Store } from '@ngxs/store';
 import { IStore } from '../../../models';
 import { IOrder } from '../../../models/product';
 import { OrderComponent } from '../order/order.component';
+import { ProductsService } from '../../../services/Products.service';
+import { CommonModule } from '@angular/common';
+import { IProvince } from '../../../models/provinces';
 
 @Component({
   selector: 'app-order-form',
   standalone: true,
-  imports: [MaterialModule, ReactiveFormsModule, OrderComponent],
+  imports: [MaterialModule, ReactiveFormsModule, OrderComponent, CommonModule],
   templateUrl: './order-form.component.html',
   styleUrl: './order-form.component.scss'
 })
 export class OrderFormComponent implements OnInit {
   public orders: IOrder[] = [];
   public form: FormGroup;
+  public provinces: IProvince[] = [];
 
   constructor(
     private readonly router: Router,
     private readonly store: Store,
-    private readonly fb: FormBuilder
+    private readonly fb: FormBuilder,
+    private readonly service: ProductsService,
   ) {
     this.form = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       lastname: ['', [Validators.required, Validators.minLength(3)]],
       phone: ['', [Validators.required, Validators.min(100000), Validators.max(9999999999), Validators.pattern('^[0-9]*$'),]],
-      province: ['', [Validators.required, Validators.minLength(4)]],
+      province: ['', [Validators.required]],
       location: ['', [Validators.required, Validators.minLength(4)]],
       street: ['', [Validators.required, Validators.minLength(2)]],
       number: ['', [Validators.required, Validators.minLength(1)]],
       floor: ['', Validators.maxLength(3)],
       department: ['', Validators.maxLength(3)]
+    });
+    this.service.getProvinces().subscribe(provinces => {
+      this.provinces = provinces.provincias;
     });
   }
 
@@ -41,7 +49,6 @@ export class OrderFormComponent implements OnInit {
       this.orders = state.products.order;
     }
     );
-
   }
 
   onFileChange(_event: Event) {

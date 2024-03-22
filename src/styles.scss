@@ -15,8 +15,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;   }
   }
 }
 
-
 .mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled){
   color: white !important;
   border: 0.1px solid white;
+}
+.mat-mdc-select-panel-above div.mat-mdc-select-panel {
+  background: black !important;
+}
+
+.cdk-overlay-pane:not(.mat-mdc-select-panel-above) div.mat-mdc-select-panel{
+  background: black !important;
 }
