@@ -48,4 +48,8 @@ export class OrderComponent implements OnInit {
   nextStep() {
     this.router.navigateByUrl('order-form');
   }
+
+  onBack() {
+    this.router.navigateByUrl('/#products');
+  }
 }

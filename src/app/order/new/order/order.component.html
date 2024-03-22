@@ -13,10 +13,13 @@
         </mat-card-content>
       </mat-card>
     }
-
-    <footer class="order__footer">
+    <div class="order__actions">
+      <button mat-button color="secondary" (click)="onBack()">Volver</button>
+      <button  mat-raised-button color="primary" (click)="nextStep()">Completa tus datos</button>
+    </div>
+    <!-- <footer class="order__footer">
       <p>Total: {{totalPrice | currency}}</p>
       <button mat-button color="primary" (click)="nextStep()">Siguiente</button>
-    </footer>
+    </footer> -->
   </div>
 </div>
