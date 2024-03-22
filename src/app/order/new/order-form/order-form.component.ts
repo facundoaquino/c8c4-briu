@@ -75,14 +75,31 @@ export class OrderFormComponent implements OnInit {
       if (!((index+1) === orders.length)) {
         text = `${text } ----------------- `;
       }
-      text = `${text } space`;
     });
-    if (orders.length) {
+    if (orders.length > 1) {
       text = `${text } ----------------- `;
       text = `${text } space`;
-
       text = `${text } Total: 💰 ${this.totalAmount }`;
     }
+    text = `${text } space`;
+
+    text = `${text } ----------------- `;
+    text = `${text } space`;
+    const { name,
+      lastname,
+      phone,
+      province,
+      location,
+      street,
+      number,
+      floor,
+      department } = this.form.value;
+      text = `${text } 👤 Cliente  `;
+      text = `${text } space`;
+      text = `${text }  Nombre: ${`${name } ${ lastname}`}`;
+      text = `${text } space`;
+      text = `${text } 🏠 Direccion: ${`${street } ${ number}, ${ floor && `piso: ${ floor},`} ${ department && `departamento: ${ department},`} ${ province}, ${ location}`}`;
+      text = `${text } space`;
     return text;
   }
 
