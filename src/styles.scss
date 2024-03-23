@@ -5,7 +5,7 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 html, body { height: 100%; scroll-behavior: smooth; overflow-x: hidden;}
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;   }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: black;  }
 .mat-mdc-snack-bar-container {
   padding: 20px;
   &.custom-snackbar {

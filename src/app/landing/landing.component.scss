@@ -1,9 +1,13 @@
 .landing {
-
+background-color: black;
 &__container{
   height: 100dvh;
   width: 100vw;
   position: relative;
+}
+
+&__container-footer{
+  color: white;
 }
 
 &__background {
