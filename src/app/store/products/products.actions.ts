@@ -14,3 +14,8 @@ export class SaveOrderForm {
   static readonly type = '[Products] Save Order Form';
   constructor(public readonly payload: { order: IOrder}) { }
 }
+
+export class DeleteOrder {
+  static readonly type = '[Products] Delete Order';
+  constructor(public readonly payload: { id: number}) { }
+}

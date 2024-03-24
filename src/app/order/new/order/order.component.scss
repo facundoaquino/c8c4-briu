@@ -10,6 +10,32 @@
     object-fit: cover;
   }
 
+  &__icon-delete{
+    position: absolute;
+    right: 5px;
+    top: 8px;
+    cursor: pointer;
+    font-size: 24px;
+    border: none;
+    background: none;
+  }
+
+  &__empty-result{
+    color: white;
+  }
+  &__empty-result > span{
+    font-size: 80px;
+    color: #3f3d3d;
+  }
+  &__empty-result_container{
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin: top;
+    margin-top: 48px;
+    opacity: 0.8;
+  }
+
 &__container {
   background-color: black;
   color: white;

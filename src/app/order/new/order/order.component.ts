@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { IOrder, IProductsState } from '../../../models/product';
 import { ProductsState } from '../../../store/products/products.state';
 import { IStore } from '../../../models';
 import { MaterialModule } from '../../../material/material.module';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { DeleteOrder } from '../../../store/products/products.actions';
 
 @Component({
   selector: 'app-order',
@@ -19,6 +20,7 @@ export class OrderComponent implements OnInit {
 
   @Select(ProductsState) productsState$!: Observable<IProductsState>;
   public orders: IOrder[] = [];
+  public subscription: Subscription = new Subscription();
 
 
   constructor(
@@ -27,10 +29,11 @@ export class OrderComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-    this.store.selectSnapshot((state: IStore) => {
-      this.orders = state.products.order;
-    }
-    );
+    this.subscription.add(
+      this.productsState$.subscribe((state) => {
+          this.orders = state.order;
+      })
+  );
   }
 
   get totalPrice(): number {
@@ -51,5 +54,9 @@ export class OrderComponent implements OnInit {
 
   onBack() {
     this.router.navigateByUrl('/#products');
+  }
+
+  deleteOrder(id: number) {
+    this.store.dispatch(new DeleteOrder({ id }));
   }
 }
