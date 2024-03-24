@@ -14,6 +14,10 @@
         <mat-label>Celular</mat-label>
         <input matInput type="number"  formControlName="phone">
       </mat-form-field>
+      <mat-divider></mat-divider>
+      <h3 class="order-form__title">Envío</h3>
+      <mat-checkbox [checked]="localShipping" (change)="setCheckShipping($event)" class="example-margin">Retiro en local <span style="font-weight: 100; font-size: 16px;">(La plata)</span></mat-checkbox>
+      <div class="order-form__shipping-data" *ngIf="!localShipping">
       <mat-form-field appearance="outline">
         <mat-label>Provincia</mat-label>
         <mat-select formControlName="province">
@@ -44,6 +48,7 @@
           <input matInput formControlName="department">
         </mat-form-field>
     </div>
+  </div>
     <div class="order-form__actions">
       <button mat-button color="secondary" (click)="onBack()">Volver</button>
       <button [disabled]="!form.valid" mat-raised-button color="primary" (click)="sendMessage()">Enviar pedido <i class="fa-brands fa-whatsapp"></i> </button>
