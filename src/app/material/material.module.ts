@@ -17,7 +17,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDividerModule } from '@angular/material/divider';
-
+import { MatBadgeModule } from '@angular/material/badge';
 @NgModule({
   exports: [
     MatAutocompleteModule,
@@ -34,6 +34,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatSelectModule,
     MatSidenavModule,
     MatSnackBarModule,
+    MatBadgeModule,
     MatToolbarModule,
     MatIconModule,
     MatSlideToggleModule,

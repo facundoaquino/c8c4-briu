@@ -32,10 +32,12 @@ background-color: black;
   position: absolute;
   color: white;
   z-index: 2;
-  top: 16px;
-  right: 24px;
-  font-size: 44px;
-  cursor: pointer;
+  top: 24px;
+  right: 48px;
+}
+
+&__cart-icon > mat-icon{
+  font-size: 32px;
 }
 }
 

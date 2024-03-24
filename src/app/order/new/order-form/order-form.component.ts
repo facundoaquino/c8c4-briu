@@ -9,11 +9,10 @@ import { OrderComponent } from '../order/order.component';
 import { ProductsService } from '../../../services/Products.service';
 import { CommonModule } from '@angular/common';
 import { IProvince } from '../../../models/provinces';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @Component({
   selector: 'app-order-form',
   standalone: true,
-  imports: [MaterialModule, ReactiveFormsModule, OrderComponent, CommonModule, FontAwesomeModule],
+  imports: [MaterialModule, ReactiveFormsModule, OrderComponent, CommonModule],
   templateUrl: './order-form.component.html',
   styleUrl: './order-form.component.scss'
 })
