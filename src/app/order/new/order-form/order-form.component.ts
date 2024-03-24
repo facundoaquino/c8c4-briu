@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MaterialModule } from '../../../material/material.module';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { IStore } from '../../../models';
@@ -45,6 +45,13 @@ export class OrderFormComponent implements OnInit {
     });
   }
 
+  localShippingValidator(control: FormControl): Validators | null {
+    if (this.localShipping && control.value === '') {
+      return Validators.required;
+    }
+    return null; // No validation needed when not local shipping
+  }
+
   ngOnInit(): void {
     window.scrollTo(0, 0);
 
@@ -56,6 +63,17 @@ export class OrderFormComponent implements OnInit {
 
   setCheckShipping(event: MatCheckboxChange) {
     this.localShipping = event.checked;
+    const controls = ['province', 'street', 'number', 'location'];
+    controls.forEach(control => {
+      this.form.get(control)?.setValidators([Validators.required]);
+      this.form.get(control)?.updateValueAndValidity();
+    });
+    if (this.localShipping) {
+      controls.forEach(control => {
+        this.form.get(control)?.setValidators([]);
+        this.form.get(control)?.updateValueAndValidity();
+      });
+    }
   }
 
   onFileChange(_event: Event) {
@@ -113,8 +131,13 @@ export class OrderFormComponent implements OnInit {
       text = `${text } space`;
       text = `${text }  Nombre: ${`${name } ${ lastname}`}`;
       text = `${text } space`;
-      text = `${text } 🏠 Direccion: ${`${street } ${ number}, ${ floor && `piso: ${ floor},`} ${ department && `departamento: ${ department},`} ${ province}, ${ location}`}`;
+      if (this.localShipping) {
+      text = `${text } Retiro por local`;
+      } else {
+        text = `${text } 🏠 Direccion: ${`${street } ${ number}, ${ floor && `piso: ${ floor},`} ${ department && `departamento: ${ department},`} ${ province}, ${ location}`}`;
       text = `${text } space`;
+      }
+
     return text;
   }
 
