@@ -7,11 +7,12 @@ import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { IProductsState } from '../models/product';
 import { ProductsState } from '../store/products/products.state';
+import { NgImageSliderModule } from 'ng-image-slider';
 
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [MaterialModule, ProductsComponent],
+  imports: [MaterialModule, ProductsComponent, NgImageSliderModule],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss'
 })
@@ -24,6 +25,36 @@ export class LandingComponent implements OnInit {
     private readonly store: Store,
     private readonly router: Router
     ) { }
+  imageObject: Array<object> = [{
+    image: '../../assets/brands/brand2.png',
+    thumbImage: '../../assets/brands/brand2.png',
+    alt: 'Boriu',
+}, {
+  image: '../../assets/brands/brand8.png',
+  thumbImage: '../../assets/brands/brand8.png',
+  alt: 'Boriu',
+}, {
+  image: '../../assets/brands/brand3.png',
+  thumbImage: '../../assets/brands/brand3.png',
+  alt: 'Boriu',
+}, {
+  image: '../../assets/brands/brand4.png',
+  thumbImage: '../../assets/brands/brand4.png',
+  alt: 'Boriu',
+}, {
+  image: '../../assets/brands/brand5.png',
+  thumbImage: '../../assets/brands/brand5.png',
+  alt: 'Boriu',
+}, {
+  image: '../../assets/brands/brand6.png',
+  thumbImage: '../../assets/brands/brand6.png',
+  alt: 'Boriu',
+}, {
+  image: '../../assets/brands/brand7.png',
+  thumbImage: '../../assets/brands/brand7.png',
+  alt: 'Boriu',
+}
+];
 
   ngOnInit(): void {
     this.store.dispatch(new GetProducts());

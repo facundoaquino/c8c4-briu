@@ -9,6 +9,18 @@ background-color: black;
 &__container-footer{
   color: white;
 }
+&__slider-container{
+  max-width: 1000px;
+  margin: auto;
+}
+
+&__slider-container > h3{
+  color: white;
+  text-align: center;
+  font-weight: 600;
+  font-size: 40px;
+  margin-top: 24px;
+}
 
 &__background {
   position: absolute;

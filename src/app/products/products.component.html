@@ -1,15 +1,18 @@
-<div class="products">
-  @if (isProductsLoading) {
-    <div class="products__loader-container">
-      <mat-spinner></mat-spinner>
-    </div>
-  } @else {
-    <div class="products__container">
-      @for (product of products; track $index) {
-        <app-product-card
-        [product]="product"
-        ></app-product-card>
-      }
-    </div>
-  }
+<div>
+  <h3>Productos</h3>
+  <div class="products">
+    @if (isProductsLoading) {
+      <div class="products__loader-container">
+        <mat-spinner></mat-spinner>
+      </div>
+    } @else {
+      <div class="products__container">
+        @for (product of products; track $index) {
+          <app-product-card
+          [product]="product"
+          ></app-product-card>
+        }
+      </div>
+    }
+  </div>
 </div>
