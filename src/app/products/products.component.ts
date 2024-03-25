@@ -5,15 +5,18 @@ import { ProductsState } from '../store/products/products.state';
 import { Observable, Subscription } from 'rxjs';
 import { IProduct, IProductsState, makeProductsState } from '../models/product';
 import { MaterialModule } from '../material/material.module';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [ProductCardComponent, MaterialModule],
+  imports: [ProductCardComponent, MaterialModule, NgxSkeletonLoaderModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })
 export class ProductsComponent implements OnInit {
+
+  public itemsSkeleton= [1, 2, 3];
 
   @Select(ProductsState) productsState$!: Observable<IProductsState>;
 

@@ -21,6 +21,25 @@ h3 {
      flex-wrap: wrap;
   }
 
+  &__skeleton-card{
+    background-color: #ffffff;
+    color: #000000;
+    width: 100%;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 400px;
+    min-height: 400px;
+  }
+
+  &__loader-container{
+    display: flex;
+    padding: 20px;
+    gap: 48px  ;
+    flex-wrap: wrap;
+   }
+
   @media screen and (max-width: 768px) {
     padding: 16px;
     display: block;
@@ -33,6 +52,9 @@ h3 {
    &__loader-container{
     display: flex;
     justify-content: center;
+    width: auto;
+    padding: 0;
+    gap: 8px;
    }
   }
 }
