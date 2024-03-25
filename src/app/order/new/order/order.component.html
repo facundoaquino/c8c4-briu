@@ -30,7 +30,7 @@
     }
     <div class="order__actions">
       <button mat-button color="secondary" (click)="onBack()">Volver</button>
-      <button  mat-raised-button color="primary" (click)="nextStep()">Completa tus datos</button>
+      <button [disabled]="!orders.length" mat-raised-button color="primary"  (click)="nextStep()">Completa tus datos</button>
     </div>
     <!-- <footer class="order__footer">
       <p>Total: {{totalPrice | currency}}</p>
