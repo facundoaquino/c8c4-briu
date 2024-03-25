@@ -1,5 +1,19 @@
-<div class="container">
-  <img src="../../assets/background.jpg" class="background">
-  <a href="#products" mat-raised-button color="primary" class="button">Hace tu pedido</a>
-</div>
+<div class="landing__container">
+  <img src="../../assets/background.jpg" class="landing__background" alt="no image avaible">
+  <a href="#products" mat-raised-button color="primary" class="landing__button">Hace tu pedido</a>
+  <span (click)="goToCart()" class="landing__cart-icon">
+    <mat-icon [matBadge]="orderQuantity" matBadgeColor="warn">shopping_cart</mat-icon>
+    </span>
+  </div>
 <app-products id="products"></app-products>
+<div class="landing__slider-container">
+  <h3>Clientes</h3>
+  <ng-image-slider [images]="imageObject" #nav
+  [infinite]="true"
+  [animationSpeed]="1"
+  [autoSlide]="true"
+  [showArrow]="false"
+  [imagePopup]="false"
+  [imageSize]="{width: '200px', height: '200px', space: 8}"
+  ></ng-image-slider>
+</div>

@@ -16,7 +16,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
+import { MatDividerModule } from '@angular/material/divider';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 @NgModule({
   exports: [
     MatAutocompleteModule,
@@ -33,8 +35,12 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatSelectModule,
     MatSidenavModule,
     MatSnackBarModule,
+    MatBadgeModule,
     MatToolbarModule,
-    MatSlideToggleModule
+    MatIconModule,
+    MatSlideToggleModule,
+    MatCheckboxModule,
+    MatDividerModule
   ]
 })
 export class MaterialModule { }

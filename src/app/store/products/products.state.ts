@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { State, Action, StateContext } from '@ngxs/store';
-import { GetProducts, GetProductsSuccess } from './products.actions';
+import { DeleteOrder, GetProducts, GetProductsSuccess, SaveOrderForm } from './products.actions';
 import { IProductsState, makeProduct, makeProductsState } from '../../models/product';
 import { ProductsService } from '../../services/Products.service';
 import { map, mergeMap } from 'rxjs';
@@ -43,5 +43,38 @@ export class ProductsState {
       isLoading: false,
       hasErrors: false
     });
+  }
+
+  @Action(DeleteOrder)
+  deleteOrder(stateContext: StateContext<IProductsState>, action: DeleteOrder) {
+
+    const state = stateContext.getState();
+
+    const filteredOrders = state.order.filter(order => order.productId !== action.payload.id);
+
+    stateContext.setState({
+      ...state,
+      order: [
+        ...filteredOrders,
+      ]
+    });
+  }
+
+  @Action(SaveOrderForm)
+  saveOrderForm(stateContext: StateContext<IProductsState>, action: SaveOrderForm) {
+
+    const state = stateContext.getState();
+
+    const filteredOrders = state.order.filter(order => order.productId !== action.payload.order.productId);
+
+    stateContext.setState({
+      ...state,
+      order: [
+        ...filteredOrders,
+        action.payload.order
+      ]
+    });
+
+
   }
 }

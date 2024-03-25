@@ -1,1 +1,40 @@
-<p>order works!</p>
+<div class="order">
+  <div class="order__container">
+    @if (!orders.length) {
+      <div class="oder__empty-result">
+        <div class="order__empty-result_container">
+          <h3>Agrega productos a tu carrito</h3>
+          <span class="material-symbols-outlined">
+          shopping_bag
+          </span>
+        </div>
+      </div>
+    }
+    @for (order of orders; track $index) {
+      <mat-card class="order__product-card">
+        <mat-card-header>
+          <button (click)="deleteOrder(order.productId)" class="order__icon-delete">
+            <span class="material-symbols-outlined">
+              delete
+              </span>
+          </button>
+          <mat-card-title>{{order.productName}}</mat-card-title>
+          <mat-card-title>{{ order.unitPrice| currency }}</mat-card-title>
+          <mat-card-subtitle>Unidades {{order.quantity}}</mat-card-subtitle>
+          <mat-card-subtitle>Total {{order.totalPrice | currency}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <img [src]=imageUrl(order) class="order__product-image" alt="no image avaible">
+        </mat-card-content>
+      </mat-card>
+    }
+    <div class="order__actions">
+      <button mat-button color="secondary" (click)="onBack()">Volver</button>
+      <button [disabled]="!orders.length" mat-raised-button color="primary"  (click)="nextStep()">Completa tus datos</button>
+    </div>
+    <!-- <footer class="order__footer">
+      <p>Total: {{totalPrice | currency}}</p>
+      <button mat-button color="primary" (click)="nextStep()">Siguiente</button>
+    </footer> -->
+  </div>
+</div>

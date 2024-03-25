@@ -1,0 +1,20 @@
+.app{
+  &__footer{
+    color: white;
+    max-width: 1000px;
+    margin: auto;
+  }
+
+&__footer-icons {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  font-size: 32px;
+  margin: 32px 0;
+}
+
+&__footer-icons > a{
+color: white;
+}
+
+}

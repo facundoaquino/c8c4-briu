@@ -1,7 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MaterialModule } from '../../material/material.module';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { IProduct, makeProduct, IOrder } from '../../models/product';
+import { SaveOrderForm } from '../../store/products/products.actions';
+import { Store } from '@ngxs/store';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-card',
@@ -11,14 +16,33 @@ import { CommonModule } from '@angular/common';
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss'
 })
-export class ProductCardComponent {
-  @Input() product: any;
+export class ProductCardComponent implements OnInit {
+  @Input() product: IProduct = makeProduct({});
+
     quantityControl = new FormControl(1);
 
-  constructor() { }
+  constructor(
+    private readonly store: Store,
+    private _snackBar: MatSnackBar,
+    private readonly router: Router
+  ) { }
+
+
+  ngOnInit(): void {
+    this.quantityControl.setValue(this.product.minPurchase);
+  }
 
   addToCart() {
-    // console.log('Agregar al carrito', this.quantityControl);
+    this.store.dispatch(new SaveOrderForm({ order: this.buildOrder() }));
+    this.openSnackBar('Producto agregado', 'Terminar');
+  }
+
+  openSnackBar(message: string, action: string) {
+    const snackBarRef = this._snackBar.open(message, action, { duration: 3000, panelClass: ['custom-snackbar'] });
+    snackBarRef.onAction().subscribe(()=>{
+      this.router.navigateByUrl('/new-order');
+
+    });
   }
 
   increaseQuantity() {
@@ -26,8 +50,24 @@ export class ProductCardComponent {
   }
 
   decreaseQuantity() {
-    if (this.quantityControl.value! > 0) {
+    if (this.quantityControl.value! > this.product.minPurchase) {
       this.quantityControl.setValue(this.quantityControl.value! - 1);
     }
   }
+
+  private buildOrder(): IOrder {
+    return {
+      productId: this.product.id,
+      productName: this.product.name,
+      quantity: this.quantityControl.value!,
+      unitPrice: this.product.price,
+      totalPrice: this.product.price * this.quantityControl.value!,
+    };
+  }
+
+  get imageUrl(): string {
+    return `../../../assets/${ this.product.imageName}`;
+  }
+
 }
+

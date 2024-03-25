@@ -1,10 +1,28 @@
-.container {
-  height: 100vh;
+.landing {
+background-color: black;
+&__container{
+  height: 100dvh;
   width: 100vw;
   position: relative;
 }
 
-.background {
+&__container-footer{
+  color: white;
+}
+&__slider-container{
+  max-width: 1000px;
+  margin: auto;
+}
+
+&__slider-container > h3{
+  color: white;
+  text-align: center;
+  font-weight: 600;
+  font-size: 40px;
+  margin-top: 24px;
+}
+
+&__background {
   position: absolute;
   top: 0;
   left: 0;
@@ -13,7 +31,7 @@
   object-fit: cover;
 }
 
-.button {
+&__button {
   position: absolute;
   top: 10%;
   left: 50%;
@@ -21,3 +39,17 @@
   font-size: 18px;
   cursor: pointer;
 }
+
+&__cart-icon{
+  position: absolute;
+  color: white;
+  z-index: 2;
+  top: 24px;
+  right: 48px;
+}
+
+&__cart-icon > mat-icon{
+  font-size: 32px;
+}
+}
+
