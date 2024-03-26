@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { State, Action, StateContext } from '@ngxs/store';
-import { DeleteOrder, GetProducts, GetProductsSuccess, SaveOrderForm } from './products.actions';
+import { DeleteOrder, GetProducts, GetProductsSuccess, SaveOrderForm, UploadLogo, UploadLogoSuccess } from './products.actions';
 import { IProductsState, makeProduct, makeProductsState } from '../../models/product';
 import { ProductsService } from '../../services/Products.service';
 import { map, mergeMap } from 'rxjs';
@@ -76,5 +76,19 @@ export class ProductsState {
     });
 
 
+  }
+
+  @Action(UploadLogo)
+  uploadLogo(stateContext: StateContext<IProductsState>, action: UploadLogo) {
+
+    return this.productsService.uploadLogo(action.payload.file, action.payload.name, action.payload.lastname)
+    .pipe(
+      map((res)=>res),
+      mergeMap(response => stateContext.dispatch(new UploadLogoSuccess(response)))
+    );
+  }
+
+  @Action(UploadLogoSuccess)
+  uploadLogoSuccess(stateContext: StateContext<IProductsState>, action: UploadLogoSuccess) {
   }
 }

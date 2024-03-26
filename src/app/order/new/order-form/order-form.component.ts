@@ -10,10 +10,12 @@ import { ProductsService } from '../../../services/Products.service';
 import { CommonModule } from '@angular/common';
 import { IProvince } from '../../../models/provinces';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { HttpClientModule } from '@angular/common/http';
+import { UploadLogo } from '../../../store/products/products.actions';
 @Component({
   selector: 'app-order-form',
   standalone: true,
-  imports: [MaterialModule, ReactiveFormsModule, OrderComponent, CommonModule],
+  imports: [MaterialModule, ReactiveFormsModule, OrderComponent, CommonModule, HttpClientModule],
   templateUrl: './order-form.component.html',
   styleUrl: './order-form.component.scss'
 })
@@ -26,6 +28,7 @@ export class OrderFormComponent implements OnInit {
   public localShipping: boolean = false;
   public errorFile: string = '';
   public errorFileExt: string = '';
+  public fileLoaded: File = new File([], '');
 
   constructor(
     private readonly router: Router,
@@ -56,13 +59,13 @@ export class OrderFormComponent implements OnInit {
 
     this.errorFile = '';
     this.errorFileExt = '';
-    if (file![0].size > maxSize) {
+    if (file![0]?.size > maxSize) {
       this.errorFile = 'Subi un logo de menos de 50mb';
       this.form.get('logoNameDisplay')?.patchValue('');
 
       return;
     }
-    if (!allowedExt.includes(file![0].name.split('.').pop()!)) {
+    if (file![0] && !allowedExt.includes(file![0].name.split('.').pop()!)) {
       this.errorFileExt = 'Extensiones permitidas: jpg, jpeg, png, gif, svg, bmp, webp, tiff, ico, psd, ai, eps';
       this.form.get('logoNameDisplay')?.patchValue('');
       return;
@@ -72,6 +75,7 @@ export class OrderFormComponent implements OnInit {
       return;
     }
     this.form.get('logoNameDisplay')?.patchValue(file![0].name);
+    this.fileLoaded = file![0];
   }
 
   onFileInputClick(_event: Event) {
@@ -114,12 +118,13 @@ export class OrderFormComponent implements OnInit {
     this.router.navigateByUrl('/new-order');
   }
 
-  nextStep() {
-
-  }
-
   sendMessage() {
     const message =encodeURIComponent(this.buildMessage()).replaceAll('space', '%0A');
+    if (this.form.get('logoNameDisplay')?.value) {
+      this.store.dispatch(new UploadLogo({ file: this.fileLoaded,
+        name: this.form.get('name')?.value,
+        lastname: this.form.get('lastname')?.value }));
+    }
     window.open(`https://api.whatsapp.com/send/?phone=%2B5491165155683&text=${message}&type=phone_number&app_absent=0`);
   }
 
@@ -150,7 +155,6 @@ export class OrderFormComponent implements OnInit {
     text = `${text } space`;
     const { name,
       lastname,
-      phone,
       province,
       location,
       street,

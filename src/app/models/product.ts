@@ -12,6 +12,11 @@ export interface IProduct {
   brand: string;
   stock: number;
 }
+export interface IRequestUploadLogo {
+  file: File;
+  name: string;
+  lastname: string;
+}
 
 export function makeProduct(product: Partial<IProduct>): IProduct {
  const defaultProduct: IProduct = {
