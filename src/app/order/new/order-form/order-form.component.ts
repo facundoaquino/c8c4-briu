@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MaterialModule } from '../../../material/material.module';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -18,10 +18,14 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
   styleUrl: './order-form.component.scss'
 })
 export class OrderFormComponent implements OnInit {
+  @ViewChild('inputFile') inputFile!: ElementRef;
+
   public orders: IOrder[] = [];
   public form: FormGroup;
   public provinces: IProvince[] = [];
   public localShipping: boolean = false;
+  public errorFile: string = '';
+  public errorFileExt: string = '';
 
   constructor(
     private readonly router: Router,
@@ -38,11 +42,41 @@ export class OrderFormComponent implements OnInit {
       street: ['', [Validators.required, Validators.minLength(2)]],
       number: ['', [Validators.required, Validators.minLength(1)]],
       floor: ['', Validators.maxLength(3)],
-      department: ['', Validators.maxLength(3)]
+      department: ['', Validators.maxLength(3)],
+      logoNameDisplay: ['']
     });
     this.service.getProvinces().subscribe(provinces => {
       this.provinces = provinces.provincias;
     });
+  }
+
+  handleFileInputChange(file: FileList | null): void {
+    let maxSize: number = 50 * 1024 * 1024;
+    const allowedExt = ['jpg', 'jpeg', 'png', 'gif', 'svg', 'bmp', 'webp', 'tiff', 'ico', 'psd', 'ai', 'eps'];
+
+    this.errorFile = '';
+    this.errorFileExt = '';
+    if (file![0].size > maxSize) {
+      this.errorFile = 'Subi un logo de menos de 50mb';
+      this.form.get('logoNameDisplay')?.patchValue('');
+
+      return;
+    }
+    if (!allowedExt.includes(file![0].name.split('.').pop()!)) {
+      this.errorFileExt = 'Extensiones permitidas: jpg, jpeg, png, gif, svg, bmp, webp, tiff, ico, psd, ai, eps';
+      this.form.get('logoNameDisplay')?.patchValue('');
+      return;
+    }
+    if (!file![0]) {
+      this.form.get('logoNameDisplay')?.patchValue('');
+      return;
+    }
+    this.form.get('logoNameDisplay')?.patchValue(file![0].name);
+  }
+
+  onFileInputClick(_event: Event) {
+    const inputFile = this.inputFile.nativeElement as HTMLInputElement;
+    inputFile.click();
   }
 
   localShippingValidator(control: FormControl): Validators | null {
@@ -74,10 +108,6 @@ export class OrderFormComponent implements OnInit {
         this.form.get(control)?.updateValueAndValidity();
       });
     }
-  }
-
-  onFileChange(_event: Event) {
-    // do nothing for now...
   }
 
   onBack() {
@@ -137,7 +167,12 @@ export class OrderFormComponent implements OnInit {
         text = `${text } 🏠 Direccion: ${`${street } ${ number}, ${ floor && `piso: ${ floor},`} ${ department && `departamento: ${ department},`} ${ province}, ${ location}`}`;
       text = `${text } space`;
       }
-
+      if (this.form.get('logoNameDisplay')?.value) {
+        text = `${text } space`;
+        text = `${text } ----------------- `;
+        text = `${text } space`;
+        text = `${text } ✅ Logo enviado.`;
+      }
     return text;
   }
 

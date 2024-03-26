@@ -26,3 +26,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
 .cdk-overlay-pane:not(.mat-mdc-select-panel-above) div.mat-mdc-select-panel{
   background: black !important;
 }
+
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: black !important;
+}

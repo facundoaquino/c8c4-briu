@@ -14,6 +14,26 @@
         <mat-label>Celular</mat-label>
         <input matInput type="number"  formControlName="phone">
       </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Subi tu logo (opcional)</mat-label>
+        <button mat-icon-button matPrefix (click)="onFileInputClick($event); false">
+          <mat-icon style="color: white;">attach_file</mat-icon>
+        </button>
+        <input matInput readonly="true"  formControlName="logoNameDisplay">
+        <input
+        type="file"
+        accept="image/*"
+        hidden
+        #inputFile
+        (change)="handleFileInputChange(inputFile.files)"
+      />
+      </mat-form-field>
+      @if (errorFile) {
+        <span class="order-form__error-file">{{errorFile}}</span>
+      }
+      @if (errorFileExt) {
+        <span class="order-form__error-file">{{errorFileExt}}</span>
+      }
       <mat-divider></mat-divider>
       <h3 class="order-form__title">Envío</h3>
       <mat-checkbox [checked]="localShipping" (change)="setCheckShipping($event)" class="example-margin">Retiro en local <span style="font-weight: 100; font-size: 16px;">(La plata)</span></mat-checkbox>
