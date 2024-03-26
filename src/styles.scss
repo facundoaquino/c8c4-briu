@@ -31,3 +31,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: black !important;
 }
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  background-color: #fff !important;
+  overflow-y: hidden;
+}
+
+.backdropBackground {
+  filter: blur(10px) !important;
+  background-color: #070707 !important;
+  opacity: 0.7 !important;
+  overflow: hidden !important;
+}

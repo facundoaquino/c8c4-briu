@@ -12,6 +12,7 @@ import { IProvince } from '../../../models/provinces';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { HttpClientModule } from '@angular/common/http';
 import { UploadLogo } from '../../../store/products/products.actions';
+import { ModalService } from '../../../services/modal.service';
 @Component({
   selector: 'app-order-form',
   standalone: true,
@@ -35,6 +36,7 @@ export class OrderFormComponent implements OnInit {
     private readonly store: Store,
     private readonly fb: FormBuilder,
     private readonly service: ProductsService,
+    private readonly modalService: ModalService
   ) {
     this.form = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
@@ -125,7 +127,7 @@ export class OrderFormComponent implements OnInit {
         name: this.form.get('name')?.value,
         lastname: this.form.get('lastname')?.value }));
     }
-    window.open(`https://api.whatsapp.com/send/?phone=%2B5491165155683&text=${message}&type=phone_number&app_absent=0`);
+    this.modalService.openModal(message);
   }
 
   buildMessage() {

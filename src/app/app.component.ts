@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MaterialModule } from './material/material.module';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -11,4 +12,7 @@ import { MaterialModule } from './material/material.module';
 })
 export class AppComponent {
   title = 'Boriu';
+  constructor(meta: Meta) {
+    meta.addTag({ name: 'title', content: 'Boriu indumentaria' });
+  }
 }

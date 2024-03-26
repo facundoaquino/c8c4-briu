@@ -71,15 +71,11 @@
   </div>
     <div class="order-form__actions">
       <button mat-button color="secondary" (click)="onBack()">Volver</button>
-      <button [disabled]="!form.valid" mat-raised-button color="primary" (click)="sendMessage()">Enviar pedido <i class="fa-brands fa-whatsapp"></i> </button>
+      <button [disabled]="!form.valid" mat-raised-button color="primary" (click)="sendMessage()">Terminar</button>
     </div>
     </form>
     <div class="order-form__side">
       <img src="../../../../assets/logo.jpg" alt="">
     </div>
-    <!-- <footer class="order-form__footer">
-      <button mat-button color="primary" (click)="onBack()">Volver</button>
-      <button mat-button color="primary" (click)="sendMessage()">Terminar</button>
-    </footer> -->
   </div>
 </div>
