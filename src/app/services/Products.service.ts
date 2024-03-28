@@ -28,6 +28,6 @@ export class ProductsService {
     formData.append('name', name);
     formData.append('lastname', lastname);
 
-    return this.http.post<IApiResponse>(`${environment.baseApiUrl}/upload`, formData);
+    return this.http.post<IApiResponse>(`${environment.baseApiUrl}/storage`, formData);
   }
 }
